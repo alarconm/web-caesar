@@ -1,5 +1,6 @@
 from flask import Flask, request
 from helpers import rotate_character
+import cgi
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -48,7 +49,7 @@ def encrypt():
     newtext = ''
     for char in text:
         newtext += rotate_character(char, rot)
-    return form.format(newtext)
+    return form.format(cgi.escape(newtext))
 
 
 app.run()
